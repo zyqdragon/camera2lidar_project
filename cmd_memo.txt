@@ -1,0 +1,19 @@
+rosrun pcl_ros bag_to_pcd image_pcd.bag /avia_3421/livox/lidar ./pcd_files/
+
+roscore
+rosrun image_view extract_images _sec_per_frame:=0.01 image:=/image_topic
+rosrun image_view extract_images _sec_per_frame:=0.01 image:=/yolov8/detection_image
+
+rosrun image_view extract_images _sec_per_frame:=0.01 image:=/hik1/hik_cam_node/hik_camera1
+
+
+
+
+mkdir /path/to/save/images
+rosbag play --clock --topics /camera/image /path/to/your/bagfile.bag
+image_view /camera/image _filename_format:=/path/to/save/images/image_%06d.jpg
+
+
+$ rosrun image_view extract_images _sec_per_frame:=0.01 image:=<IMAGETOPICINBAGFILE> # <IMAGETOPICINBAGFILE>为bag文件中储存图片的topic
+
+
